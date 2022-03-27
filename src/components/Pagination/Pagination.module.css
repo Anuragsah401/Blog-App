@@ -50,6 +50,14 @@
   color: #eee;
 }
 
+.previousBtn,
+.nextBtn {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (min-width: 992px) {
   .container {
     flex: 0 0 75%;

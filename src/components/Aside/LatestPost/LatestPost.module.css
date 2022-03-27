@@ -24,7 +24,6 @@
 
 small {
   font-size: 0.8rem;
-  color: #555;
   font-weight: 400;
   font-size: 80%;
 }
@@ -37,9 +36,8 @@ small {
 
 .blogDetails h3 a {
   text-decoration: none;
-  color: #555;
 }
 
 .blogDetails h3 a:hover {
-  color: #589442;
+  color: #ff2359;
 }

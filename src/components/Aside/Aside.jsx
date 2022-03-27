@@ -6,10 +6,16 @@ import LatestPost from "./LatestPost/LatestPost";
 import Categories from "./Categories/Categories";
 
 const Aside = (props) => {
+  const [blogs, setBlogs] = React.useState([])
+
+  React.useEffect(() => {
+    setBlogs(props.blogs.map((blog) => blog))
+  }, [props.blogs])
+
   return (
-    <div className={classes.container}>
+    <div data-aos="fade" data-aos-delay="1400" className={classes.container}>
       <Widget title="Latest Post">
-        <LatestPost blogs={props.blogs} />
+        <LatestPost blogs={blogs} />
       </Widget>
 
       <Widget title="Categories">

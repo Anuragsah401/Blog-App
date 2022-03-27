@@ -1,122 +1,79 @@
 import React from 'react'
 import Pagination from '../../components/Pagination/Pagination'
 
-import avatar from '../../assets/images/avatar.jpg'
-
 import classes from './Blog.module.css'
 import Aside from '../../components/Aside/Aside'
 
+import { getDocs, collection } from 'firebase/firestore'
+import { db } from '../../firebase'
+import Heading from '../../components/UI-Comp/Heading/Heading'
 
-const Blog = () => {
+import Aos from "aos";
+import "aos/dist/aos.css"
 
-    const blogs = [
-        {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-          {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-          {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-          {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-          {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-        {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-        {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-        {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-        {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-        {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-        {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-        {
-            blogImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            blogDate: '12 Nov. 2019',
-            blogTitle: 'Blog Title',
-            blogContent: 'Quodsi sanctus pro eu, ne audire scripserit quo. Vel an enim offendit salutandi, in eos quod omnes epicurei, ex veri qualisque scriptorem mei.',
-            personName: 'Admin',
-            avatar: avatar
-        },
-        
-]
+
+const Blog = (props) => {
+
+    const [blogs, setBlogs] = React.useState([])
+
+    const postsCollectionRef = collection(db, "posts")
+
+    React.useEffect(() => {
+        Aos.init({
+            duration: 1000
+        })
+    }, [])
+
+    React.useEffect(() => {
+        const getPosts = async () => {
+            const data = await getDocs(postsCollectionRef)
+            setBlogs(data.docs.map(doc => ({ ...doc.data(), id: doc.id, blogDate: doc.createdAt })));
+        }
+        getPosts()
+    }, [])
+
+    let updatedBlogs = null
+
+    if (blogs) {
+        updatedBlogs = blogs.sort((a, b) => {
+            if (a.createdAt.seconds < b.createdAt.seconds) {
+                return 1
+            } else if (a.createdAt.seconds > b.createdAt.seconds) {
+                return -1
+            }
+        }
+        )
+    }
+
+    if (props.searchTxt !== null) {
+        updatedBlogs = blogs.filter(blog => {
+            if (props.searchTxt === "") {
+                return blog
+            } else if (blog.blogTitle.toLowerCase().includes(props.searchTxt.toLowerCase())) {
+                return blog
+            }
+        })
+    }
+
+
+    if (!blogs || blogs.length === 0) {
+        return <div className="mt-[8rem]">
+            <Heading text="No Blogs availabe!" />
+        </div>
+    }
 
     return (
-        <div className={classes.container}>
-            <div className={classes.blogContainer}>
-               <Pagination blogs={blogs} />
-               <Aside blogs={blogs} />
+        <>
+            <div>
+                <Heading text="See what people are posting!" />
             </div>
-        </div>
-        
+            <div className={classes.container}>
+                <div className={classes.blogContainer}>
+                    <Pagination blogs={updatedBlogs} />
+                    <Aside blogs={blogs} />
+                </div>
+            </div>
+        </>
     )
 }
 
