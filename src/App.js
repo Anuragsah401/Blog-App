@@ -5,10 +5,8 @@ import Home from "./components/Home/Home";
 import AuthPage from "./components/AuthPage/AuthPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
-
 import { AuthProvider } from "./Context/AuthContext.jsx";
 import ForgotPassword from "./components/AuthPage/ForgotPassword/ForgotPassword";
-
 import CreatePost from "./components/CreatePost/CreatePost";
 import Main from "./containers/Main/Main";
 import SinglePostView from "./components/SinglePostView/SinglePostView";

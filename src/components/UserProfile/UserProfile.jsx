@@ -1,55 +1,69 @@
 import React from "react";
-import { Navigate } from 'react-router-dom'
+import { Navigate } from "react-router-dom";
 
-import { useAuth } from "../../Context/AuthContext";
-import Heading from "../UI-Comp/Heading/Heading";
+import Heading from "components/UI-Comp/Heading/Heading";
+
+import { useAuth } from "Context/AuthContext";
 
 const UserProfile = () => {
   const { currentUser } = useAuth();
 
-  const [DayStatus, setDayStatus] = React.useState("")
-  const today = new Date()
-  const curHr = today.getHours()
+  const [DayStatus, setDayStatus] = React.useState("");
+
+  const today = new Date();
+  const curHr = today.getHours();
+
+  const getDayStatus = (curHr) => {
+    let dayStatus = "";
+
+    if (curHr < 12) {
+      dayStatus = "Good morning";
+    } else if (curHr < 18) {
+      dayStatus = "Good afternoon";
+    } else {
+      dayStatus = "Good evening";
+    }
+
+    return dayStatus;
+  };
 
   React.useEffect(() => {
-    if (curHr < 12) {
-      setDayStatus('Good morning')
-    } else if (curHr < 18) {
-      setDayStatus('Good afternoon')
-    } else {
-      setDayStatus('Good evening')
-    }
-  }, [curHr])
+    const dayStatusTobeUpdated = getDayStatus(curHr);
+
+    setDayStatus(dayStatusTobeUpdated);
+  }, [curHr]);
 
   if (!currentUser) {
-    return <Navigate to="/" />
+    return <Navigate to="/" />;
   }
-
 
   return (
     <div className="text-white">
-      <div data-aos="fade" data-aos-delay="1000" className="flex align-center justify-between align-center mt-[5rem]">
-        <div className="flex align-center justify-center">
-          <div className="w-[60px] h-[60px] rounded-full truncate">
+      <div
+        data-aos="fade"
+        data-aos-delay="1000"
+        className="flex justify-between mt-[5rem] align-center"
+      >
+        <div className="flex justify-center align-center">
+          <div className="w-[60px] h-[60px]">
             <img
-              className="w-[100%] h-[100%] object-cover"
+              className="object-cover w-full h-full rounded-full"
               src={currentUser.photoURL}
               alt=""
             />
           </div>
-          <div className="ml-[0.5rem] leading-5 py-[0.5rem]">
+          <div className="py-[0.5rem] ml-[0.5rem] leading-5">
             {DayStatus}, <br />
             {currentUser.displayName}
           </div>
         </div>
 
         <div>
-          <button className="px-[1.8rem] py-[0.5rem] bg-[#FF2359] text-[0.8rem] hover:bg-[#1CBBB4]">
+          <button className="py-[0.5rem] px-[1.8rem] text-[0.8rem] bg-[#FF2359] hover:bg-[#1CBBB4]">
             Edit Profile
           </button>
         </div>
       </div>
-
 
       <div className="mt-[3rem]">
         <Heading text="Your blogs List:" />
