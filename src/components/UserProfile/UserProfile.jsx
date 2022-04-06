@@ -1,9 +1,9 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-import Heading from "components/UI-Comp/Heading/Heading";
-
 import { useAuth } from "Context/AuthContext";
+
+import Heading from "components/UI-Comp/Heading/Heading";
 
 const UserProfile = () => {
   const { currentUser } = useAuth();

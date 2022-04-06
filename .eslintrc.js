@@ -21,6 +21,8 @@ module.exports = {
   plugins: ["react", "import", "prettier", "tailwindcss"],
   rules: {
     "no-console": ["warn", { allow: ["warn"] }],
+    // disabled prop type validation
+    "react/prop-types": 0,
 
     //* disables js doc
     "require-jsdoc": 0,
@@ -48,30 +50,36 @@ module.exports = {
       {
         pathGroups: [
           {
+            pattern: "Context/**",
+            group: "external",
+            position: "after",
+          },
+
+          {
             pattern: "components/**",
             group: "external",
             position: "after",
           },
-          {
-            pattern: "hooks/**",
-            group: "external",
-            position: "after",
-          },
-          {
-            pattern: "utils/**",
-            group: "external",
-            position: "after",
-          },
+          // {
+          //   pattern: "hooks/**",
+          //   group: "external",
+          //   position: "after",
+          // },
+          // {
+          //   pattern: "utils/**",
+          //   group: "external",
+          //   position: "after",
+          // },
           {
             pattern: "assets/**",
             group: "external",
             position: "after",
           },
-          {
-            pattern: "constants/**",
-            group: "external",
-            position: "after",
-          },
+          // {
+          //   pattern: "constants/**",
+          //   group: "external",
+          //   position: "after",
+          // },
         ],
         "newlines-between": "always",
       },
